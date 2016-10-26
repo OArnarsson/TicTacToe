@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class TicTacToe {
 
+	//Holds the board information.
 	private String board;
 
 	//Initializes the game board.
@@ -154,6 +155,6 @@ public class TicTacToe {
 		System.out.println("Synergy welcomes you to TicTacToe!\n");
 
 		TicTacToe TTT = new TicTacToe();
-		TTT.play("1 12 2 4 8 5 3 -2 6 7 8 9");
+		TTT.play("1 2 3 4 5 5 6 7 8 9");
 	}
 }

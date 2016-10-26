@@ -33,7 +33,7 @@ public class TicTacToeTest {
     @Test //2
     public void testInputPrint() {
       TTT.askForInput();
-      assertEquals("Please enter a number between 1 and 9\n", outContent.toString());
+      assertEquals("Please enter a number between 1 and 9.\n", outContent.toString());
     }
 
     @Test //3
