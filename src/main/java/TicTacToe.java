@@ -1,69 +1,51 @@
 package ttt;
 
 import java.util.Random;
+import java.util.Arrays;
 
 public class TicTacToe {
 
 	//Holds the board information.
-	private String board;
+	public Board board;
 
 	//Initializes the game board.
 	public TicTacToe() {
-		board = "123456789";
+		board = new Board();
 	}
 
 	//Prints out the game board.
 	public void printBoard() {
-		for(int i=0; i<3; i++) {
-			System.out.print(board.charAt(i*3) + " "
-					   	   + board.charAt(i*3+1) +" "
-					   	   + board.charAt(i*3+2)+ "\n");
+		for(int i=0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if(board.cells[i][j].getValue() == "")
+					System.out.print(" ");
+
+				System.out.print(board.cells[i][j].getValue() + " ");
+			}
+			System.out.print("\n");
 		}
 		System.out.print("\n");
 	}
 
-	//Makes sure no invalid inputs get into the updateBoard function.
-	public boolean validateInput(int pos) {
-		if(pos > 9 || pos < 1) {
-			inputOutOfRange();
-			return false;
-		}
-
-		if(!board.contains(String.valueOf(pos))) {
-			inputInvalid();
-			return false;
-		}
-
-		return true;
-	}
-
-	//Prints out message to user.
-	public void askForInput() {
-		System.out.print("Please enter a number between 1 and 9.\n");
-	}
-
-	//Prints out message to user.
-	public void inputOutOfRange() {
-		System.out.print("The number you entered was out of range.\n");
-	}
-
-	//Prints out message to user.
-	public void inputInvalid() {
-		System.out.print("The number you entered was not available.\n");
-	}
-
 	//Updates the game board with given character.
-	public void updateBoard(int pos, char mark) {
-		board = board.replaceAll(String.valueOf(pos), String.valueOf(mark));
+	public void updateBoard(int row, int col, String mark) {
+		board.cells[row][col].setValue(mark);
 	}
 
 	//Inserts 'X' for manually chosen integer.
 	public boolean humanPlayer(int pos) {
-			if(board.contains(String.valueOf(pos))) {
-				updateBoard(pos, 'X');
+			if(board.updateCell(convertToRow(pos), convertToCol(pos), true)) {
 				return true;
 			}
 			return false;
+	}
+
+	public int convertToRow(int input) {
+		return ((input-1)/3);
+	}
+
+	public int convertToCol(int input) {
+		return ((input-1)%3);
 	}
 
 	//Picks a random input between 1-9.
@@ -75,33 +57,16 @@ public class TicTacToe {
 	//Inserts 'O' for automatically chosen integer.
 	public void computerPlayer() {
 			int pos = randomInput();
-			while(!validateInput(pos)) {
+			while(!board.updateCell(convertToRow(pos), convertToCol(pos), false)) {
 				pos = randomInput();
 			}
 
 			System.out.println("Computer picked: " + pos);
-			updateBoard(pos, 'O');
 	}
 
 	//Checks to see if the game has already been won.
 	public boolean gameOver() {
-		for(int i=0; i<3; i++) {
-			//Vertical check
-			if(board.charAt(i * 3) == board.charAt(i * 3 + 1) && board.charAt(i * 3 + 1) == board.charAt(i * 3 + 2))
-				return true;
-
-			//Horziontal check
-			if(board.charAt(i) == board.charAt(i + 3) && board.charAt(i + 3) == board.charAt(i + 6))
-				return true;
-		}
-
-		//Crosschecks
-		if(board.charAt(0) == board.charAt(4) && board.charAt(4) == board.charAt(8))
-			return true;
-		if(board.charAt(2) == board.charAt(4) && board.charAt(4) == board.charAt(6))
-			return true;
-
-		return false;
+		return board.gameOver();
 	}
 
 	//Seperates each integer in the string
@@ -118,7 +83,6 @@ public class TicTacToe {
 		printBoard();
 
 		do {
-			askForInput();
 			while(!validPlayer) {
 				for(int i = 0; i < inputInts.length; i++) {
 					validPlayer = humanPlayer(Integer.parseInt(inputInts[i]));
@@ -134,14 +98,13 @@ public class TicTacToe {
 				break;
 
 			computerPlayer();
-
 			printBoard();
 			counter++;
 			validPlayer = false;
 			validComputer = false;
 		} while(!gameOver() && counter < 9);
 
-		if(counter > 9)
+		if(counter >= 9 && !gameOver())
 			System.out.println("It's a tie!");
 
 		if(counter%2 == 0)
