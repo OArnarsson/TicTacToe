@@ -18,6 +18,7 @@ public class TicTacToe {
 					   	   + board.charAt(i*3+1) +" "
 					   	   + board.charAt(i*3+2)+ "\n");
 		}
+		System.out.print("\n");
 	}
 
 	//Makes sure no invalid inputs get into the updateBoard function.
@@ -39,7 +40,6 @@ public class TicTacToe {
 
 	//Inserts 'X' for manually chosen integer.
 	public boolean humanPlayer(int pos) {
-			askForInput();
 			if(validateInput(pos)) {
 				updateBoard(pos, 'X');
 				return true;
@@ -54,13 +54,14 @@ public class TicTacToe {
 	}
 
 	//Inserts 'O' for automatically chosen integer.
-	public boolean computerPlayer() {
+	public void computerPlayer() {
 			int pos = randomInput();
-			if(validateInput(pos)) {
-				updateBoard(pos, 'O');
-				return true;
+			while(!validateInput(pos)) {
+				pos = randomInput();
 			}
-			return false;
+
+			System.out.println("Computer picked: " + pos);
+			updateBoard(pos, 'O');
 	}
 
 	//Checks to see if the game has already been won.
@@ -84,8 +85,14 @@ public class TicTacToe {
 		return false;
 	}
 
+	//Seperates each integer in the string
+	public String[] split(String input){
+  		return input.split(" ");
+	}
+
+
+
 	public static void main(String[] args) {
-		TicTacToe TTT = new TicTacToe();
-		System.out.println("Synergy welcomes you to TicTacToe!");
+		System.out.println("Synergy welcomes you to TicTacToe!\n");
 	}
 }
