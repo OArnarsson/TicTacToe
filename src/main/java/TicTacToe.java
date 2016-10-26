@@ -1,5 +1,7 @@
 package ttt;
 
+import java.util.Random;
+
 public class TicTacToe {
 
 	private String board;
@@ -26,14 +28,28 @@ public class TicTacToe {
 		System.out.print("Please enter a number between 1 and 9\n");
 	}
 
-	public void updateBoard(int pos) {
-		board = board.replaceAll(String.valueOf(pos), "X");
+	public void updateBoard(int pos, char mark) {
+		board = board.replaceAll(String.valueOf(pos), String.valueOf(mark));
 	}
 
-	public boolean humanPlayer(int pos){
+	public boolean humanPlayer(int pos) {
 			askForInput();
-			if(validateInput(pos)){
-				updateBoard(pos);
+			if(validateInput(pos)) {
+				updateBoard(pos, 'X');
+				return true;
+			}
+			return false;
+	}
+
+	public int randomInput() {
+		Random rand = new Random();
+		return (rand.nextInt(9));
+	}
+
+	public boolean computerPlayer() {
+			int pos = randomInput();
+			if(validateInput(pos)) {
+				updateBoard(pos, 'O');
 				return true;
 			}
 			return false;
@@ -41,6 +57,9 @@ public class TicTacToe {
 
 
 	public static void main(String[] args) {
+		TicTacToe TTT = new TicTacToe();
 		System.out.println("Synergy welcomes you to TicTacToe!");
+
+		TTT.printBoard();
 	}
 }

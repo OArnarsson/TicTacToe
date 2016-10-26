@@ -47,19 +47,21 @@ public class TicTacToeTest {
 
     @Test //4
     public void updateBoard() {
-        TTT.updateBoard(3);
+        TTT.updateBoard(3, 'X');
         TTT.printBoard();
         assertEquals("1 2 X\n4 5 6\n7 8 9\n", outContent.toString());
     }
     @Test //4.1
-    public void updateBoardAt13578() {
-        TTT.updateBoard(1);
-        TTT.updateBoard(3);
-        TTT.updateBoard(5);
-        TTT.updateBoard(7);
-        TTT.updateBoard(8);
+    public void updateBoardAt1358() {
+        TTT.updateBoard(1, 'X');
+        TTT.updateBoard(2, 'O');
+        TTT.updateBoard(3, 'X');
+        TTT.updateBoard(4, 'O');
+        TTT.updateBoard(5, 'X');
+        TTT.updateBoard(8, 'X');
+        TTT.updateBoard(9, 'O');
         TTT.printBoard();
-        assertEquals("X 2 X\n4 X 6\nX X 9\n", outContent.toString());
+        assertEquals("X O X\nO X 6\n7 X O\n", outContent.toString());
     }
 
     @Test //5.1
@@ -79,5 +81,4 @@ public class TicTacToeTest {
         assertEquals(true, TTT.humanPlayer(8));
         assertEquals(true, TTT.humanPlayer(9));
     }
-
 }
