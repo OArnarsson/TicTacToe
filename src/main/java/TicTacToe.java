@@ -6,8 +6,6 @@ public class TicTacToe {
 		String board =  new String();
 		board = "123456789";
 
-		PrintBoard(board);
-
 		System.out.println("Synergy welcomes you to TicTacToe!\n");
 	}
 
