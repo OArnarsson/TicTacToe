@@ -76,7 +76,7 @@ public class TicTacToe {
 				return true;
 		}
 
-		//Crosschecks
+		//Cross checks
 		if(board.charAt(0) == board.charAt(4) && board.charAt(4) == board.charAt(8))
 			return true;
 		if(board.charAt(2) == board.charAt(4) && board.charAt(4) == board.charAt(6))
@@ -90,9 +90,52 @@ public class TicTacToe {
   		return input.split(" ");
 	}
 
+	public void play(String input){
+		int counter = 0;
+		boolean validPlayer = false;
+		boolean validComputer = false;
+		String[] inputInts = split(input);
 
+		printBoard();
+
+		do {
+			askForInput();
+			while(!validPlayer) {
+				for(int i = 0; i < inputInts.length; i++) {
+					validPlayer = humanPlayer(Integer.parseInt(inputInts[i]));
+
+					if(validPlayer)
+						break;
+				}
+			}
+			counter++;
+			printBoard();
+
+			if(gameOver())
+				break;
+
+			computerPlayer();
+
+			printBoard();
+			counter++;
+			validPlayer = false;
+			validComputer = false;
+		} while(!gameOver() && counter < 9);
+
+		if(counter > 9)
+			System.out.println("It's a tie!");
+
+		if(counter%2 == 0)
+			System.out.println("Oh man, the computer beat you!");
+
+		else
+			System.out.println("Wow, you beat the random computer.. great.");
+	}
 
 	public static void main(String[] args) {
 		System.out.println("Synergy welcomes you to TicTacToe!\n");
+
+		TicTacToe TTT = new TicTacToe();
+		TTT.play("1 2 4 8 5 3 6 7 8 9");
 	}
 }
