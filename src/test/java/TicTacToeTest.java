@@ -51,8 +51,7 @@ public class TicTacToeTest {
         TTT.printBoard();
         assertEquals("1 2 X\n4 5 6\n7 8 9\n", outContent.toString());
     }
-
-    @Test //4
+    @Test //4.1
     public void updateBoardAt13578() {
         TTT.updateBoard(1);
         TTT.updateBoard(3);
@@ -63,7 +62,22 @@ public class TicTacToeTest {
         assertEquals("X 2 X\n4 X 6\nX X 9\n", outContent.toString());
     }
 
+    @Test //5.1
+    public void humanPlayerFalse() {
+        assertEquals(false, TTT.humanPlayer(0));
+    }
 
-
+    @Test //5.2
+    public void humanPlayerTrue() {
+        assertEquals(true, TTT.humanPlayer(1));
+        assertEquals(true, TTT.humanPlayer(2));
+        assertEquals(true, TTT.humanPlayer(3));
+        assertEquals(true, TTT.humanPlayer(4));
+        assertEquals(true, TTT.humanPlayer(5));
+        assertEquals(true, TTT.humanPlayer(6));
+        assertEquals(true, TTT.humanPlayer(7));
+        assertEquals(true, TTT.humanPlayer(8));
+        assertEquals(true, TTT.humanPlayer(9));
+    }
 
 }

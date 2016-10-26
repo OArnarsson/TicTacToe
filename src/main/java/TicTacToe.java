@@ -19,7 +19,6 @@ public class TicTacToe {
 	public boolean validateInput(int pos) {
 		if(pos > 9 || pos < 1 || !board.contains(Integer.toString(pos)))
 			return false;
-
 		return true;
 	}
 
@@ -29,6 +28,15 @@ public class TicTacToe {
 
 	public void updateBoard(int pos) {
 		board = board.replaceAll(String.valueOf(pos), "X");
+	}
+
+	public boolean humanPlayer(int pos){
+			askForInput();
+			if(validateInput(pos)){
+				updateBoard(pos);
+				return true;
+			}
+			return false;
 	}
 
 
