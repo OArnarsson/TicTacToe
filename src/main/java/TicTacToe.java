@@ -16,7 +16,9 @@ public class TicTacToe {
 		}
 	}
 
-
+	public void askForInput() {
+		System.out.print("Please enter a number between 1 and 9\n");
+	}
 
 	public static void main(String[] args) {
 

@@ -12,6 +12,7 @@ import java.io.ByteArrayOutputStream;
 public class TicTacToeTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    TicTacToe TTT = new TicTacToe();
 
     @Before
     public void setUpStreams() {
@@ -23,11 +24,15 @@ public class TicTacToeTest {
         System.setOut(null);
     }
 
-
     @Test //1
     public void testPrint(){
-      TicTacToe TTT = new TicTacToe();
       TTT.printBoard();
       assertEquals("1 2 3\n4 5 6\n7 8 9\n", outContent.toString());
+    }
+
+    @Test //2
+    public void testInputPrint(){
+      TTT.askForInput();
+      assertEquals("Please enter a number between 1 and 9\n", outContent.toString());
     }
 }
