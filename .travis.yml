@@ -5,6 +5,7 @@ jdk:
 before_install:
  - chmod +x gradlew
 script:
-  - gradle build
+  - ./gradlew build
+  - ./gradlew run
 notifications:
   slack: rusynergy:43gO08tYr7lQJAEIG5fU37AF
