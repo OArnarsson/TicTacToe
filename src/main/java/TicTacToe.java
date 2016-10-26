@@ -23,14 +23,32 @@ public class TicTacToe {
 
 	//Makes sure no invalid inputs get into the updateBoard function.
 	public boolean validateInput(int pos) {
-		if(pos > 9 || pos < 1 || !board.contains(Integer.toString(pos)))
+		if(pos > 9 || pos < 1) {
+			inputOutOfRange();
 			return false;
+		}
+
+		if(!board.contains(String.valueOf(pos))) {
+			inputInvalid();
+			return false;
+		}
+
 		return true;
 	}
 
 	//Prints out message to user.
 	public void askForInput() {
-		System.out.print("Please enter a number between 1 and 9\n");
+		System.out.print("Please enter a number between 1 and 9.\n");
+	}
+
+	//Prints out message to user.
+	public void inputOutOfRange() {
+		System.out.print("The number you entered was out of range.\n");
+	}
+
+	//Prints out message to user.
+	public void inputInvalid() {
+		System.out.print("The number you entered was not available.\n");
 	}
 
 	//Updates the game board with given character.
@@ -40,7 +58,7 @@ public class TicTacToe {
 
 	//Inserts 'X' for manually chosen integer.
 	public boolean humanPlayer(int pos) {
-			if(validateInput(pos)) {
+			if(board.contains(String.valueOf(pos))) {
 				updateBoard(pos, 'X');
 				return true;
 			}
@@ -76,7 +94,7 @@ public class TicTacToe {
 				return true;
 		}
 
-		//Cross checks
+		//Crosschecks
 		if(board.charAt(0) == board.charAt(4) && board.charAt(4) == board.charAt(8))
 			return true;
 		if(board.charAt(2) == board.charAt(4) && board.charAt(4) == board.charAt(6))
@@ -136,6 +154,6 @@ public class TicTacToe {
 		System.out.println("Synergy welcomes you to TicTacToe!\n");
 
 		TicTacToe TTT = new TicTacToe();
-		TTT.play("1 2 4 8 5 3 6 7 8 9");
+		TTT.play("1 12 2 4 8 5 3 -2 6 7 8 9");
 	}
 }
