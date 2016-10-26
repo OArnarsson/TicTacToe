@@ -1,5 +1,6 @@
 package ttt;
 
+import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -16,7 +17,9 @@ class TableInfo
 	public final static int dimensionSize = rectSize*3;
 }
 
-public class Draw
+
+@SuppressWarnings("serial")
+public class Draw extends Applet
 {
     private TTTBoard p;
 
