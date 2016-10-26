@@ -40,11 +40,30 @@ public class TicTacToeTest {
     public void testingFailingValidation() {
         assertEquals(false, TTT.validateInput(0));
     }
-
     @Test //3.1
     public void testingPassingValidation() {
         assertEquals(true, TTT.validateInput(9));
     }
+
+    @Test //4
+    public void updateBoard() {
+        TTT.updateBoard(3);
+        TTT.printBoard();
+        assertEquals("1 2 X\n4 5 6\n7 8 9\n", outContent.toString());
+    }
+
+    @Test //4
+    public void updateBoardAt13578() {
+        TTT.updateBoard(1);
+        TTT.updateBoard(3);
+        TTT.updateBoard(5);
+        TTT.updateBoard(7);
+        TTT.updateBoard(8);
+        TTT.printBoard();
+        assertEquals("X 2 X\n4 X 6\nX X 9\n", outContent.toString());
+    }
+
+
 
 
 }

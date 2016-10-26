@@ -27,6 +27,10 @@ public class TicTacToe {
 		System.out.print("Please enter a number between 1 and 9\n");
 	}
 
+	public void updateBoard(int pos) {
+		board = board.replaceAll(String.valueOf(pos), "X");
+	}
+
 
 	public static void main(String[] args) {
 		System.out.println("Synergy welcomes you to TicTacToe!");
