@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ttt.TicTacToeTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-10-26T11:56:25" hostname="OSurface" time="0.002">
+<testsuite name="ttt.TicTacToeTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-10-26T12:16:16" hostname="OSurface" time="0.003">
   <properties/>
-  <testcase name="testConnection" classname="ttt.TicTacToeTest" time="0.002"/>
+  <testcase name="testPrint" classname="ttt.TicTacToeTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

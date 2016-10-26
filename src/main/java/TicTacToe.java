@@ -2,14 +2,24 @@ package ttt;
 
 public class TicTacToe {
 
-	public static void main(String[] args) {
-		String board =  new String();
-		board = "123456789";
+	private String board;
 
-		System.out.println("Synergy welcomes you to TicTacToe!\n");
+	public TicTacToe() {
+		board = "123456789";
 	}
 
-	public static String TestingTests() {
-		return ("Tests are connected and running");
+	public void printBoard() {
+		for(int i=0; i<3; i++) {
+			System.out.print(board.charAt(i*3) + " "
+					   	   + board.charAt(i*3+1) +" "
+					   	   + board.charAt(i*3+2)+ "\n");
+		}
+	}
+
+
+
+	public static void main(String[] args) {
+
+		System.out.println("Synergy welcomes you to TicTacToe!");
 	}
 }
