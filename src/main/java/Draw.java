@@ -35,8 +35,9 @@ public class Draw extends TableInfo
         
         p.addMouseListener(new MouseAdapter() 
         {
+            
             @Override
-            public void mouseClicked(MouseEvent e) 
+            public void mousePressed(MouseEvent e)
             {
                 p.list.add(findLoc(e));
                 p.repaint();
@@ -60,37 +61,37 @@ public class Draw extends TableInfo
     
     public Pair<Integer, Integer> findLoc(MouseEvent e)
 	{
-//		int rectSize = 130; 
-//		final int xAcc = 8;
-//		final int yAcc = 30;
-		
 		int y = e.getY() - yAcc;
 		int x = e.getX() - xAcc;
 		
-		int xLoc = 0;
-		int yLoc = 0;
+		int maxSize = rectSize * 3;
 		
-		//int size = 3;
-		
-		for (int i = 0; i < size; i++)
+		if (y <= maxSize && x <= maxSize)
 		{
-							
-			if (x > (i * rectSize) &&  x <= (rectSize * (i+1) ))
+			int xLoc = 0;
+			int yLoc = 0;
+					
+			for (int i = 0; i < size; i++)
 			{
-				System.out.println("Col: " + i);
-				xLoc = i;
+				if (x > (i * rectSize) &&  x <= (rectSize * (i+1) ))
+				{
+					System.out.println("Col: " + i);
+					xLoc = i;
+				}
+				
+				if (y > (i * rectSize) &&  y <= (rectSize * (i+1) ))
+				{
+					System.out.println("Row: " + i);
+					yLoc = i;
+				}
 			}
 			
-			if (y > (i * rectSize) &&  y <= (rectSize * (i+1) ))
-			{
-				System.out.println("Row: " + i);
-				yLoc = i;
-			}
-		}
-		
-		Pair<Integer, Integer> pair = Pair.createPair(xLoc,yLoc);
+			Pair<Integer, Integer> pair = Pair.createPair(xLoc,yLoc);
+			return pair;
 
-		return pair;
+		}
+
+		return null;
 	}
 }
 
@@ -110,9 +111,18 @@ class TTTBoard extends JPanel
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         Initialize(g2d);
+        boolean switchs = true;
         for (Pair<Integer, Integer> l : list) 
         {
-        	Print(l, true, g2d);
+        	if (switchs == true)
+        	{
+        		switchs = false;
+        	}
+        	else
+        	{
+        		switchs = true;
+        	}
+        	Print(l, switchs, g2d);
         }
     }
 
@@ -142,7 +152,7 @@ class TTTBoard extends JPanel
     	int x1 = k.getX() * rectSize;
     	int y1 = k.getY() * rectSize;
     	int x2 = (k.getX() + 1) * rectSize;
-    	int y2 = (k.getY() + 1 ) * rectSize;
+    	int y2 = (k.getY() + 1) * rectSize;
     	
     	if (player)
     	{
