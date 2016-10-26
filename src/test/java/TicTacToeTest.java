@@ -81,4 +81,60 @@ public class TicTacToeTest {
         assertEquals(true, TTT.humanPlayer(8));
         assertEquals(true, TTT.humanPlayer(9));
     }
+
+    @Test //6.0
+    public void verticalWin() {
+        TTT.updateBoard(1, 'X');
+        TTT.updateBoard(2, 'X');
+        TTT.updateBoard(3, 'X');
+        assertEquals(true, TTT.gameOver());
+    }
+
+    @Test //6.01
+    public void verticalWinFailure() {
+        TTT.updateBoard(1, 'X');
+        TTT.updateBoard(5, 'X');
+        TTT.updateBoard(3, 'X');
+        assertEquals(false, TTT.gameOver());
+    }
+
+    @Test //6.1
+    public void horizontalWin() {
+        TTT.updateBoard(1, 'X');
+        TTT.updateBoard(4, 'X');
+        TTT.updateBoard(7, 'X');
+        assertEquals(true, TTT.gameOver());
+    }
+
+    @Test //6.11
+    public void horizontalWinFailure() {
+        TTT.updateBoard(1, 'X');
+        TTT.updateBoard(2, 'X');
+        TTT.updateBoard(7, 'X');
+        assertEquals(false, TTT.gameOver());
+    }
+
+    @Test //6.2
+    public void crossWin() {
+        TTT.updateBoard(1, 'X');
+        TTT.updateBoard(5, 'X');
+        TTT.updateBoard(9, 'X');
+        assertEquals(true, TTT.gameOver());
+    }
+
+    @Test //6.21
+    public void crossWinFailure() {
+        TTT.updateBoard(1, 'X');
+        TTT.updateBoard(3, 'X');
+        TTT.updateBoard(9, 'X');
+        assertEquals(false, TTT.gameOver());
+    }
+
+    @Test //6.3
+    public void otherCrossWin() {
+        TTT.updateBoard(3, 'X');
+        TTT.updateBoard(5, 'X');
+        TTT.updateBoard(7, 'X');
+        assertEquals(true, TTT.gameOver());
+    }
 }
