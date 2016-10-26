@@ -31,8 +31,20 @@ public class TicTacToeTest {
     }
 
     @Test //2
-    public void testInputPrint(){
+    public void testInputPrint() {
       TTT.askForInput();
       assertEquals("Please enter a number between 1 and 9\n", outContent.toString());
     }
+
+    @Test //3
+    public void testingFailingValidation() {
+        assertEquals(false, TTT.validateInput(0));
+    }
+
+    @Test //3.1
+    public void testingPassingValidation() {
+        assertEquals(true, TTT.validateInput(9));
+    }
+
+
 }

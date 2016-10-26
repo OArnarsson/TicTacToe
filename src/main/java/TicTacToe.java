@@ -16,12 +16,19 @@ public class TicTacToe {
 		}
 	}
 
+	public boolean validateInput(int pos) {
+		if(pos > 9 || pos < 1 || !board.contains(Integer.toString(pos)))
+			return false;
+
+		return true;
+	}
+
 	public void askForInput() {
 		System.out.print("Please enter a number between 1 and 9\n");
 	}
 
-	public static void main(String[] args) {
 
+	public static void main(String[] args) {
 		System.out.println("Synergy welcomes you to TicTacToe!");
 	}
 }
