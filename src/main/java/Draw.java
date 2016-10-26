@@ -9,17 +9,19 @@ import ttt.Pair;
 
 class TableInfo
 {
-	public final static int rectSize = 120;
-	public final static int xAcc = 8;
-	public final static int yAcc = 30;
+	public final static int rectSize = 160;
+	public final static int xAcc = 0;
+	public final static int yAcc = 0;
 	public final static int size = 3;
+	public final static int dimensionSize = rectSize*3;
 }
 
-public class Draw extends TableInfo
+public class Draw
 {
     private TTTBoard p;
 
-    public Draw() {
+    public Draw() 
+    {
         JFrame Board = new JFrame();
         Board.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initComponents();
@@ -35,11 +37,21 @@ public class Draw extends TableInfo
         
         p.addMouseListener(new MouseAdapter() 
         {
-            
             @Override
             public void mousePressed(MouseEvent e)
             {
-                p.list.add(findLoc(e));
+        		int y = e.getY() - TableInfo.yAcc;
+        		int x = e.getX() - TableInfo.xAcc;
+        		
+        		System.out.println("x: " + x + " y: " + y);
+        		
+        		int maxSize = TableInfo.rectSize * 3;
+        		
+        		if (y <= maxSize && x <= maxSize)
+        		{
+        			p.list.add(findLoc(x, y));
+        		}
+        		
                 p.repaint();
             }
         });
@@ -49,49 +61,31 @@ public class Draw extends TableInfo
 
     public static void main(String args[]) 
     {
-        SwingUtilities.invokeLater(new Runnable() 
-        {
-            @Override
-            public void run() 
-            {
-                new Draw();
-            }
-        });
+    	new Draw();
     }
     
-    public Pair<Integer, Integer> findLoc(MouseEvent e)
+    public Pair<Integer, Integer> findLoc(int x, int y)
 	{
-		int y = e.getY() - yAcc;
-		int x = e.getX() - xAcc;
+		int xLoc = 0;
+		int yLoc = 0;
 		
-		int maxSize = rectSize * 3;
-		
-		if (y <= maxSize && x <= maxSize)
+		for (int i = 0; i < TableInfo.size; i++)
 		{
-			int xLoc = 0;
-			int yLoc = 0;
-					
-			for (int i = 0; i < size; i++)
+			if (x > (i * TableInfo.rectSize) &&  x <= (TableInfo.rectSize * (i+1) ))
 			{
-				if (x > (i * rectSize) &&  x <= (rectSize * (i+1) ))
-				{
-					System.out.println("Col: " + i);
-					xLoc = i;
-				}
-				
-				if (y > (i * rectSize) &&  y <= (rectSize * (i+1) ))
-				{
-					System.out.println("Row: " + i);
-					yLoc = i;
-				}
+				System.out.println("Col: " + i);
+				xLoc = i;
 			}
 			
-			Pair<Integer, Integer> pair = Pair.createPair(xLoc,yLoc);
-			return pair;
-
+			if (y > (i * TableInfo.rectSize) &&  y <= (TableInfo.rectSize * (i+1) ))
+			{
+				System.out.println("Row: " + i);
+				yLoc = i;
+			}
 		}
 
-		return null;
+		Pair<Integer, Integer> pair = Pair.createPair(xLoc,yLoc);
+		return pair;
 	}
 }
 
@@ -99,10 +93,7 @@ public class Draw extends TableInfo
 class TTTBoard extends JPanel
 {
 	TableInfo info = new TableInfo();
-	public final static int rectSize = TableInfo.rectSize;
-	public final static int rows = TableInfo.size;
-	public final static int columns = TableInfo.size;
-	    
+	
     public ArrayList< Pair<Integer, Integer> > list = new ArrayList<>();
 
     @Override
@@ -128,31 +119,31 @@ class TTTBoard extends JPanel
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(rectSize*3 + 2, rectSize*3 + 2);
+        return new Dimension(TableInfo.dimensionSize, TableInfo.dimensionSize);
     }
 
     public static int Pos(int x)
     {
-    	return (x * rectSize % ( rectSize*3 ) );
+    	return (x * TableInfo.rectSize % ( TableInfo.rectSize*3 ) );
     }
     
     public void Initialize (Graphics g)
     {
-    	for (int c = 0; c < columns; c++)
+    	for (int c = 0; c < TableInfo.size; c++)
     	{
-        	for (int r = 0; r < rows; r++)
+        	for (int r = 0; r < TableInfo.size; r++)
         	{
-        		g.drawRect(Pos(c), Pos(r), rectSize, rectSize);
+        		g.drawRect(Pos(c), Pos(r), TableInfo.rectSize, TableInfo.rectSize);
         	}
     	}	    	
     }
     
     public static void Print (Pair<Integer, Integer> k, boolean player, Graphics g)
     {
-    	int x1 = k.getX() * rectSize;
-    	int y1 = k.getY() * rectSize;
-    	int x2 = (k.getX() + 1) * rectSize;
-    	int y2 = (k.getY() + 1) * rectSize;
+    	int x1 = k.getX() * TableInfo.rectSize;
+    	int y1 = k.getY() * TableInfo.rectSize;
+    	int x2 = (k.getX() + 1) * TableInfo.rectSize;
+    	int y2 = (k.getY() + 1) * TableInfo.rectSize;
     	
     	if (player)
     	{
@@ -161,7 +152,7 @@ class TTTBoard extends JPanel
     	}
     	else
     	{
-    		g.drawOval(x1, y1, rectSize, rectSize);
+    		g.drawOval(x1, y1, TableInfo.rectSize, TableInfo.rectSize);
     	}
     }
 }
