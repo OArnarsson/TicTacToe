@@ -13,6 +13,29 @@ public class TicTacToe {
 		board = "123456789";
 	}
 
+	//Awesome ascii art checking in.
+	private static void printWelcome() {
+		System.out.println("  _____                                    _______ _______ _______ ");
+		System.out.println(" / ____|                                  |__   __|__   __|__   __|");
+		System.out.println("| (___  _   _ _ __   ___ _ __ __ _ _   _     | |     | |     | |   ");
+		System.out.println(" \\___ \\| | | | '_ \\ / _ \\ '__/ _` | | | |    | |     | |     | |   ");
+		System.out.println(" ____) | |_| | | | |  __/ | | (_| | |_| |    | |     | |     | |   ");
+		System.out.println("|_____/ \\__, |_| |_|\\___|_|  \\__, |\\__, |    |_|ic   |_|ac   |_|oe ");
+		System.out.println("	 __/ |                __/ | __/ |                          ");
+		System.out.println("	|___/                |___/ |___/                           ");
+		System.out.println("___________________________________________________________________\n");
+	}
+
+	private static void printGameOver() {
+		System.out.println("  _____                       ____                 ");
+		System.out.println(" / ____|                     / __ \\                ");
+		System.out.println("| |  __  __ _ _ __ ___   ___| |  | |_   _____ _ __ ");
+		System.out.println("| | |_ |/ _` | '_ ` _ \\ / _ \\ |  | \\ \\ / / _ \\ '__|");
+		System.out.println("| |__| | (_| | | | | | |  __/ |__| |\\ V /  __/ |   ");
+		System.out.println(" \\_____|\\__,_|_| |_| |_|\\___|\\____/  \\_/ \\___|_|   ");
+		System.out.println("												 ");
+	}
+
 	//Prints out the game board.
 	public void printBoard() {
 		for(int i=0; i<3; i++) {
@@ -136,9 +159,11 @@ public class TicTacToe {
 	}
 
 	public static void main(String[] args) {
+		printWelcome();
 
 		TicTacToe TTT = new TicTacToe();
 		TTT.play();
 
+		printGameOver();
 	}
 }

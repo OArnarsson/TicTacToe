@@ -13,3 +13,7 @@ dependencies {
 	compile "org.apache.commons:commons-lang3:3.+"
     testCompile "junit:junit:4.+"
 }
+
+task play(type: Exec) {
+  commandLine "bin/build_and_test"
+}
