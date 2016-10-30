@@ -1,0 +1,3 @@
+#!/bin/bash
+
+javac -cp "build/classes/;lib/junit-4.11.jar" src/test/java/*.java -d classes
