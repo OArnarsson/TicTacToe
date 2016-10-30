@@ -70,41 +70,41 @@ public class TicTacToeTest {
 
     @Test //6.0
     public void verticalWin() {
-        TTT.board.updateCell(0, 0, true);
-        TTT.board.updateCell(0, 1, true);
-        TTT.board.updateCell(0, 2, true);
+        TTT.updateBoard(1, 'X');
+        TTT.updateBoard(4, 'X');
+        TTT.updateBoard(7, 'X');
         assertEquals(true, TTT.gameOver());
     }
 
     @Test //6.01
     public void verticalWinFailure() {
-        TTT.board.updateCell(0, 0, true);
-        TTT.board.updateCell(0, 1, true);
-        TTT.board.updateCell(2, 1, true);
+        TTT.updateBoard(2, 'O');
+        TTT.updateBoard(1, 'O');
+        TTT.updateBoard(8, 'O');
         assertEquals(false, TTT.gameOver());
     }
 
     @Test //6.1
     public void horizontalWin() {
-        TTT.board.updateCell(0, 0, true);
-        TTT.board.updateCell(1, 0, true);
-        TTT.board.updateCell(2, 0, true);
+        TTT.updateBoard(1, 'X');
+        TTT.updateBoard(2, 'X');
+        TTT.updateBoard(3, 'X');
         assertEquals(true, TTT.gameOver());
     }
 
     @Test //6.2
     public void crossWin() {
-        TTT.board.updateCell(0, 0, true);
-        TTT.board.updateCell(1, 1, true);
-        TTT.board.updateCell(2, 2, true);
+        TTT.updateBoard(1, 'O');
+        TTT.updateBoard(5, 'O');
+        TTT.updateBoard(9, 'O');
         assertEquals(true, TTT.gameOver());
     }
 
     @Test //6.3
     public void otherCrossWin() {
-        TTT.board.updateCell(0, 2, false);
-        TTT.board.updateCell(1, 1, false);
-        TTT.board.updateCell(2, 0, false);
+        TTT.updateBoard(3, 'X');
+        TTT.updateBoard(5, 'X');
+        TTT.updateBoard(7, 'X');
         assertEquals(true, TTT.gameOver());
     }
 }
