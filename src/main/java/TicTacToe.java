@@ -86,9 +86,9 @@ public class TicTacToe {
 		Scanner scan = new Scanner(System.in);
 		int input = scan.nextInt();
 
-		if(!validateInput(input)) {
+		if(!validateInput(input))
 			humanPlayer(mark);
-		}
+
 		else {
 			System.out.println();
 			if(mark == 'X')
@@ -99,7 +99,6 @@ public class TicTacToe {
 
 			updateBoard(input, mark);
 		}
-
 	}
 
 	//Checks to see if the game has already been won.

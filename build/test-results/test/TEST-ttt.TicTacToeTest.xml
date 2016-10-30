@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ttt.TicTacToeTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2016-10-26T20:42:14" hostname="OSurface" time="0.003">
+<testsuite name="ttt.TicTacToeTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2016-10-30T18:31:47" hostname="OSurface" time="0.018">
   <properties/>
-  <testcase name="verticalWinFailure" classname="ttt.TicTacToeTest" time="0.001"/>
+  <testcase name="testPrint" classname="ttt.TicTacToeTest" time="0.0"/>
+  <testcase name="verticalWinFailure" classname="ttt.TicTacToeTest" time="0.0"/>
   <testcase name="horizontalWin" classname="ttt.TicTacToeTest" time="0.0"/>
-  <testcase name="humanPlayerFalse" classname="ttt.TicTacToeTest" time="0.0"/>
-  <testcase name="humanPlayerTrue" classname="ttt.TicTacToeTest" time="0.0"/>
+  <testcase name="testingPassingValidation" classname="ttt.TicTacToeTest" time="0.0"/>
+  <testcase name="testAskForInput" classname="ttt.TicTacToeTest" time="0.0"/>
+  <testcase name="testInputPrint" classname="ttt.TicTacToeTest" time="0.0"/>
+  <testcase name="testingFailingValidation" classname="ttt.TicTacToeTest" time="0.0"/>
   <testcase name="otherCrossWin" classname="ttt.TicTacToeTest" time="0.0"/>
+  <testcase name="testInvalidInput" classname="ttt.TicTacToeTest" time="0.0"/>
+  <testcase name="testInputOutOfRange" classname="ttt.TicTacToeTest" time="0.0"/>
+  <testcase name="testConstructor" classname="ttt.TicTacToeTest" time="0.0"/>
   <testcase name="verticalWin" classname="ttt.TicTacToeTest" time="0.0"/>
   <testcase name="crossWin" classname="ttt.TicTacToeTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
