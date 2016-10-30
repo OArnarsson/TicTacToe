@@ -24,10 +24,15 @@ public class TicTacToeTest {
         System.setOut(null);
     }
 
+    @Test //0
+    public void testConstructor() {
+        assertEquals("123456789", String.valueOf(TTT.board));
+    }
+
     @Test //1
-    public void testPrint(){
+    public void testPrint() {
       TTT.printBoard();
-      assertEquals("1 2 3\n4 5 6\n7 8 9\n\n", outContent.toString());
+      assertEquals("1 2 3\n4 5 6\n7 8 9\n___________________________________________________________________\n", outContent.toString());
     }
 
     @Test //2
@@ -46,40 +51,21 @@ public class TicTacToeTest {
     }
 
     @Test //4
-    public void updateBoard() {
-        TTT.updateBoard(3, 'X');
-        TTT.printBoard();
-        assertEquals("1 2 X\n4 5 6\n7 8 9\n\n", outContent.toString());
+    public void testAskForInput() {
+        TTT.askForInput();
+        assertEquals("Please enter a number between 1 and 9.\n", outContent.toString());
     }
-    @Test //4.1
-    public void updateBoardAt1358() {
-        TTT.updateBoard(1, 'X');
-        TTT.updateBoard(2, 'O');
-        TTT.updateBoard(3, 'X');
-        TTT.updateBoard(4, 'O');
-        TTT.updateBoard(5, 'X');
-        TTT.updateBoard(8, 'X');
-        TTT.updateBoard(9, 'O');
-        TTT.printBoard();
-        assertEquals("X O X\nO X 6\n7 X O\n\n", outContent.toString());
+
+    @Test //5.0
+    public void testInputOutOfRange() {
+        TTT.inputOutOfRange();
+        assertEquals("The number you entered was out of range.\n", outContent.toString());
     }
 
     @Test //5.1
-    public void humanPlayerFalse() {
-        assertEquals(false, TTT.humanPlayer(0));
-    }
-
-    @Test //5.2
-    public void humanPlayerTrue() {
-        assertEquals(true, TTT.humanPlayer(1));
-        assertEquals(true, TTT.humanPlayer(2));
-        assertEquals(true, TTT.humanPlayer(3));
-        assertEquals(true, TTT.humanPlayer(4));
-        assertEquals(true, TTT.humanPlayer(5));
-        assertEquals(true, TTT.humanPlayer(6));
-        assertEquals(true, TTT.humanPlayer(7));
-        assertEquals(true, TTT.humanPlayer(8));
-        assertEquals(true, TTT.humanPlayer(9));
+    public void testInvalidInput() {
+        TTT.inputInvalid();
+        assertEquals("The number you entered was not available.\n", outContent.toString());
     }
 
     @Test //6.0

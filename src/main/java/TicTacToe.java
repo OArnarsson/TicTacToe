@@ -1,11 +1,12 @@
 package ttt;
 
+import java.util.Scanner;
 import java.util.Random;
 
 public class TicTacToe {
 
 	//Holds the board information.
-	private String board;
+	public String board;
 
 	//Initializes the game board.
 	public TicTacToe() {
@@ -19,7 +20,7 @@ public class TicTacToe {
 					   	   + board.charAt(i*3+1) +" "
 					   	   + board.charAt(i*3+2)+ "\n");
 		}
-		System.out.print("\n");
+		System.out.print("___________________________________________________________________\n");
 	}
 
 	//Makes sure no invalid inputs get into the updateBoard function.
@@ -58,29 +59,24 @@ public class TicTacToe {
 	}
 
 	//Inserts 'X' for manually chosen integer.
-	public boolean humanPlayer(int pos) {
-			if(board.contains(String.valueOf(pos))) {
-				updateBoard(pos, 'X');
-				return true;
-			}
-			return false;
-	}
+	public void humanPlayer(char mark) {
+		Scanner scan = new Scanner(System.in);
+		int input = scan.nextInt();
 
-	//Picks a random input between 1-9.
-	public int randomInput() {
-		Random rand = new Random();
-		return (rand.nextInt(9));
-	}
+		if(!validateInput(input)) {
+			humanPlayer(mark);
+		}
+		else {
+			System.out.println();
+			if(mark == 'X')
+				System.out.println("Player 1 put '" + mark + "' in cell #" + input);
 
-	//Inserts 'O' for automatically chosen integer.
-	public void computerPlayer() {
-			int pos = randomInput();
-			while(!validateInput(pos)) {
-				pos = randomInput();
-			}
+			else
+				System.out.println("Player 2 put '" + mark + "' in cell #" + input);
 
-			System.out.println("Computer picked: " + pos);
-			updateBoard(pos, 'O');
+			updateBoard(input, mark);
+		}
+
 	}
 
 	//Checks to see if the game has already been won.
@@ -104,57 +100,45 @@ public class TicTacToe {
 		return false;
 	}
 
-	//Seperates each integer in the string
-	public String[] split(String input){
-  		return input.split(" ");
-	}
-
-	public void play(String input){
+	public void play(){
 		int counter = 0;
-		boolean validPlayer = false;
-		boolean validComputer = false;
-		String[] inputInts = split(input);
 
 		printBoard();
 
 		do {
 			askForInput();
-			while(!validPlayer) {
-				for(int i = 0; i < inputInts.length; i++) {
-					validPlayer = humanPlayer(Integer.parseInt(inputInts[i]));
-
-					if(validPlayer)
-						break;
-				}
-			}
+			humanPlayer('X');
 			counter++;
+
+			if(counter >= 9)
+				break;
+
 			printBoard();
 
 			if(gameOver())
 				break;
 
-			computerPlayer();
-
+			humanPlayer('O');
 			printBoard();
 			counter++;
-			validPlayer = false;
-			validComputer = false;
-		} while(!gameOver() && counter < 9);
+		} while(!gameOver() && counter != 9);
 
-		if(counter > 9)
+		if(counter == 9)
 			System.out.println("It's a tie!");
 
-		if(counter%2 == 0)
-			System.out.println("Oh man, the computer beat you!");
+		else if(counter % 2 == 0)
+			System.out.println("Player 2 is the winner!");
 
 		else
-			System.out.println("Wow, you beat the random computer.. great.");
+			System.out.println("Player 1 is the winner!");
+
+			printBoard();
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Synergy welcomes you to TicTacToe!\n");
 
 		TicTacToe TTT = new TicTacToe();
-		TTT.play("1 2 3 4 5 5 6 7 8 9");
+		TTT.play();
+
 	}
 }
